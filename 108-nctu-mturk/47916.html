@@ -5,103 +5,164 @@
 <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport" />
-    <!-- Bootstrap CSS -->
+    <!-- reference to https://getbootstrap.com/docs/3.4/css/ -->
     <link crossorigin="anonymous" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" rel="stylesheet" />
-    <link href="main.css" rel="stylesheet" type="text/css" />
+    <style>
+        header h1 {
+            background-color: black;
+            color: white;
+            height: 200px;
+            text-align: center;
+            padding: 70px 0;
+            margin: 20px;
+        }
+
+        .content {
+            margin: 20px;
+        }
+
+        #tweet {
+            background-color: rgb(247, 158, 247);
+            font-size: 22px;
+            padding: 20px;
+        }
+
+        input {
+            border: 0;
+            background-color: #003C9D;
+            color: #fff;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        input:hover {
+            color: #003C9D;
+            background-color: #fff;
+            border: 2px #003C9D solid;
+        }
+    </style>
     <script src="https://s3.amazonaws.com/mturk-public/externalHIT_v1.js" type="text/javascript"></script>
 </head>
 
 <body>
     <header>
-        <h1>Rate the emotion of the tweet</h1>
+        <h1 style="font-size: 60px;">
+            Please reading Tweet to answer questions.
+        </h1>
     </header>
     <br />
     <div class="content">
-        <h2>Tweet</h2>
-        <div class="alert alert-primary" id="tweet" role="alert">
+        <h2 style="font-size: 40px;">Tweet</h2>
+        <div id="tweet" role="alert">
             Cryin’ Chuck Schumer is now asking for “fairness”, when he and the Democrat House members worked together to make sure I got ZERO fairness in the House. So, what else is new?
         </div>
         <hr />
         <script>
             var startTime = Date.now()
-            window.onload = function () {
-                document.getElementById("submit-vad").disabled = true
-                setTimeout(function () {
-                    var submit_ele = document.getElementById("submit-vad");
-                    submit_ele.disabled = false;
-                }, 6925);
-            }
             function getViewTime() {
                 document.getElementById("viewtime").value = Date.now() - startTime
-            }
-        </script>
+            } </script>
         <form id="mturk_form" method="post" name="mturk_form" onsubmit="getViewTime()">
+            <div style="background-color: aqua; padding: 20px;">
+                <p style="font-size: 30px;">
+                    Please evaluating Valence (Pleasure) about this Tweet
+                </p>
+                <input id="unpleasant" name="valence" required="required" type="radio" value="1" />
+                <label for="unpleasant" style="font-size: 25px;">Unpleasant</label>
+                <br />
+                <input id="unsatisfied" name="valence" type="radio" value="2" />
+                <label for="unsatisfied" style="font-size: 25px;">Unsatisfied</label>
+                <br />
+                <input id="va-neutral" name="valence" type="radio" value="3" />
+                <label for="va-neutral" style="font-size: 25px;">Neutral</label>
+                <br />
+                <input id="pleased" name="valence" type="radio" value="4" />
+                <label for="pleased" style="font-size: 25px;">Pleased</label>
+                <br />
+                <input id="pleasant" name="valence" type="radio" value="5" />
+                <label for="pleasant" style="font-size: 25px;">Pleasant</label>
+            </div>
+
+            <div style="background-color:dodgerblue; padding: 20px;">
+                <p style="font-size: 30px;">
+                    Please evaluating Arousal about this Tweet
+                </p>
+                <input id="calm" name="arousal" required="required" type="radio" value="1" />
+                <label for="calm" style="font-size: 25px;">Calm</label>
+                <br />
+                <input id="dull" name="arousal" type="radio" value="2" />
+                <label for="dull" style="font-size: 25px;">Dull</label>
+                <br />
+                <input id="ar-neutral" name="arousal" type="radio" value="3" />
+                <label for="ar-neutral" style="font-size: 25px;">Neutral</label>
+                <br />
+                <input id="wide-awake" name="arousal" type="radio" value="4" />
+                <label for="wide-awake" style="font-size: 25px;">Wide-awake</label>
+                <br />
+                <input id="excited" name="arousal" type="radio" value="5" />
+                <label for="excited" style="font-size: 25px;">Excited</label>
+            </div>
+
+            <div style="background-color:lightblue; padding: 20px;">
+                <p style="font-size: 30px;">
+                    Please evaluating Dominance about this Tweet
+                </p>
+                <input id="independent" name="dominance" required="required" type="radio" value="1" />
+                <label for="independent" style="font-size: 25px;">Independent</label>
+                <br />
+                <input id="powerful" name="dominance" type="radio" value="2" />
+                <label for="powerful" style="font-size: 25px;">Powerful</label>
+                <br />
+                <input id="do-neutral" name="dominance" type="radio" value="3" />
+                <label for="do-neutral" style="font-size: 25px;">Neutral</label>
+                <br />
+                <input id="powerlessness" name="dominance" type="radio" value="4" />
+                <label for="powerlessness" style="font-size: 25px;">Powerlessness</label>
+                <br />
+                <input id="dependent" name="dominance" type="radio" value="5" />
+                <label for="dependent" style="font-size: 25px;">Dependent</label>
+            </div>
+
+            <div class="container">
+                <label for="submitButton" id="time"> </label>
+                <br>
+                <input disabled="disabled" id="submitButton" type="submit" value="Submit" />
+            </div>
             <input id="assignmentId" name="assignmentId" type="hidden" value="" />
-            <input id="viewtime" name="viewtime" type="hidden" />
-            <p style="font-size:22px">Please rate the valence of the tweet:</p>
-            <input id="unpleasant" name="valence" required="required" type="radio" value="1" />
-            <label for="unpleasant">Unpleasant</label>
-            <br />
-            <input id="unsatisfied" name="valence" type="radio" value="2" />
-            <label for="unsatisfied">Unsatisfied</label>
-            <br />
-            <input id="va-neutral" name="valence" type="radio" value="3" />
-            <label for="va-neutral">Neutral</label>
-            <br />
-            <input id="pleased" name="valence" type="radio" value="4" />
-            <label for="pleased">Pleased</label>
-            <br />
-            <input id="pleasant" name="valence" type="radio" value="5" />
-            <label for="pleasant">Pleasant</label>
-            <br />
-            <hr />
-            <p style="font-size:22px">Please rate the arousal of the tweet:</p>
-            <input id="calm" name="arousal" required="required" type="radio" value="1" />
-            <label for="calm">Calm</label>
-            <br />
-            <input id="dull" name="arousal" type="radio" value="2" />
-            <label for="dull">Dull</label>
-            <br />
-            <input id="ar-neutral" name="arousal" type="radio" value="3" />
-            <label for="ar-neutral">Neutral</label>
-            <br />
-            <input id="wide-awake" name="arousal" type="radio" value="4" />
-            <label for="wide-awake">Wide-awake</label>
-            <br />
-            <input id="excited" name="arousal" type="radio" value="5" />
-            <label for="excited">Excited</label>
-            <br />
-            <hr />
-            <p style="font-size:22px">Please rate the dominance of the tweet:</p>
-            <input id="independent" name="dominance" required="required" type="radio" value="1" />
-            <label for="independent">Independent</label>
-            <br />
-            <input id="powerful" name="dominance" type="radio" value="2" />
-            <label for="powerful">Powerful</label>
-            <br />
-            <input id="do-neutral" name="dominance" type="radio" value="3" />
-            <label for="do-neutral">Neutral</label>
-            <br />
-            <input id="powerlessness" name="dominance" type="radio" value="4" />
-            <label for="powerlessness">Powerlessness</label>
-            <br />
-            <input id="dependent" name="dominance" type="radio" value="5" />
-            <label for="dependent">Dependent</label>
-            <br />
-            <br />
-            <input class="btn btn-primary" id="submit-vad" type="submit" value="Submit" />
+            <input name="viewtime" type="hidden" />
         </form>
     </div>
     <script language="Javascript">
         turkSetAssignmentID();
     </script>
-    <script crossorigin="anonymous" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-        src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
-    <script crossorigin="anonymous" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-        src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-    <script crossorigin="anonymous" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-        src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+        function countWords(str) {
+            return str.trim().split(' ').length;
+        }
+
+        var tweetLen = countWords(document.getElementById("tweet").innerHTML);
+        var countdownNum = Math.floor(0.25 * tweetLen);
+
+        setTimeout(function () {
+            document.getElementById('submitButton').style.display = "block";
+            document.getElementById('submitButton').disabled = false;
+        }, countdownNum * 1000);
+
+        incTimer();
+
+        function incTimer() {
+            setTimeout(function () {
+                if (countdownNum > 0) {
+                    countdownNum--;
+                    document.getElementById('time').innerHTML = 'Time left: ' + countdownNum + ' seconds';
+                    incTimer();
+                } else {
+                    document.getElementById('time').innerHTML = ' ';
+                }
+            }, 1000);
+        }
+    </script>
 </body>
 
 </html>
