@@ -68,8 +68,11 @@ I hope the Republican Caucus kicks you out immediately and the people of Utah vo
             var startTime = Date.now()
             function getViewTime() {
                 document.getElementById("viewtime").value = Date.now() - startTime
-            } </script>
+            } 
+        </script>
         <form id="mturk_form" method="post" name="mturk_form" onsubmit="getViewTime()">
+            <input id="assignmentId" name="assignmentId" type="hidden" value="" />
+            <input id="viewtime" name="viewtime" type="hidden" />
             <div style="background-color: aqua; padding: 20px;">
                 <p style="font-size: 30px;">
                     Please evaluating Valence (Pleasure) about this Tweet
@@ -135,8 +138,6 @@ I hope the Republican Caucus kicks you out immediately and the people of Utah vo
                 <br>
                 <input disabled="disabled" id="submitButton" type="submit" value="Submit" />
             </div>
-            <input id="assignmentId" name="assignmentId" type="hidden" value="" />
-            <input name="viewtime" type="hidden" />
         </form>
     </div>
     <script language="Javascript">
